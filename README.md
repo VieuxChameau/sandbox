@@ -19,19 +19,19 @@ Two profiles are available :
 
 ##### To build a fat jar
 
-```
+```shell
 ./mvnw clean package -Pjar
 ```
 
 ##### To build a war
 
-```
+```shell
 ./mvnw clean package -Pwar
 ```
 
 ##### To add extra info to the build info in jenkins
 
-```
+```shell
 ./mvnw clean package -Pwar -Djenkins.buildTag=${BUILD_TAG}
 ```
 This work with both profile
@@ -39,18 +39,18 @@ This work with both profile
 #### Gradle
 
 ##### To build a fat jar
-```
+```shell
 ./gradlew bootJar
 ```
 
 ##### To build a war
 
-```
+```shell
 ./gradlew bootWar 
 ```
 
 ##### To add extra info to the build info in jenkins
-```
+```shell
 ./gradlew build -DjenkinsBuildTag=$BUILD_TAG
 ```
 
@@ -58,7 +58,7 @@ This work with both profile
 
 First you need to run the dependencies : rabbitmq, redis 
 
-```
+```shell
 cd docker
 docker-compose up
 ```
@@ -74,7 +74,7 @@ If you have selected the profile war during the build using either maven or grad
 
 If you have build a fat jar by using either maven or gradle
 
-```
+```shell
 java -jar sandbox-0.0.1-SNAPSHOT.jar --spring.profiles.active=local-docker --sandbox.exchangesrates.api.token=theRealToken
 ```
 
@@ -82,13 +82,13 @@ java -jar sandbox-0.0.1-SNAPSHOT.jar --spring.profiles.active=local-docker --san
 
 If you have selected the profile jar during the build, you can run with the following commands:
 
-```
+```shell
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=local-docker,--sandbox.exchangesrates.api.token=theRealToken
 ```
 
 #### Running with Spring Boot Gradle plugin
 
-```
+```shell
 ./gradlew bootRun --args='--spring.profiles.active=local-docker --sandbox.exchangesrates.api.token=theRealToken'
 ```
 
@@ -104,13 +104,13 @@ Spring actuator is activated and some endpoints are available
 ### Creating Key pair
 
 To create a new key pair in a keystore
-```
+```shell
 keytool -genkeypair -alias sandboxJwtKey -keyalg RSA -keypass SandboxSecurityFirst -keystore sandboxJwtKeystore.jks -storepass SandboxSecurityFirst
 ```
 
 To extract the public key
 
-```
+```shell
 # First extract the public certificate
 keytool -export -keystore sandboxJwtKeystore.jks -alias sandboxJwtKey -file sandboxJwtKey.cer
  
