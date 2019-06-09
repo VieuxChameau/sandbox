@@ -1,0 +1,182 @@
+{
+  "rabbit_version": "3.7.14",
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "YFlD5gj5SP51w2tbhAZR3YzvfoWl96ugqHazpcpgpzVMIugl",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    },
+    {
+      "name": "sandbox",
+      "password_hash": "9TTcjCWrX5RJ+EKXnwcHX9f34JE5/m0OACAbuF086E/EtW+O",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": ""
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "sandbox"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "sandbox",
+      "vhost": "sandbox",
+      "configure": "",
+      "write": "sandbox*",
+      "read": "sandbox*"
+    },
+    {
+      "user": "guest",
+      "vhost": "sandbox",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "queues": [
+    {
+      "name": "sandbox.dlq",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "sandbox.unroutable",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "sandbox.getExchangesRates",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "sandbox.dlx"
+      }
+    },
+    {
+      "name": "sandbox.getOnDemandExchangesRates",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "sandbox.dlx"
+      }
+    },
+    {
+      "name": "sandbox.scheduledExchangesRates",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "sandbox.dlx"
+      }
+    },
+    {
+      "name": "sandbox.onDemandExchangesRates",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "sandbox.dlx"
+      }
+    },
+    {
+      "name": "sandbox.delay",
+      "vhost": "sandbox",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-message-ttl": 30000,
+        "x-dead-letter-exchange": "sandbox.exchangerate",
+        "x-dead-letter-routing-key": "exchangerates.daily"
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "sandbox.dlx",
+      "vhost": "sandbox",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "sandbox.alt",
+      "vhost": "sandbox",
+      "type": "fanout",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "sandbox.exchangerate",
+      "vhost": "sandbox",
+      "type": "direct",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {
+        "alternate-exchange": "sandbox.alt"
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "vhost": "sandbox",
+      "source": "sandbox.alt",
+      "routing_key": "",
+      "destination": "sandbox.unroutable",
+      "destination_type": "queue",
+      "arguments": {}
+    },
+    {
+      "vhost": "sandbox",
+      "source": "sandbox.dlx",
+      "routing_key": "",
+      "destination": "sandbox.dlq",
+      "destination_type": "queue",
+      "arguments": {}
+    },
+    {
+      "vhost": "sandbox",
+      "source": "sandbox.exchangerate",
+      "routing_key": "exchangerates.daily",
+      "destination": "sandbox.getExchangesRates",
+      "destination_type": "queue",
+      "arguments": {}
+    },
+    {
+      "vhost": "sandbox",
+      "source": "sandbox.exchangerate",
+      "routing_key": "exchangerates.delay",
+      "destination": "sandbox.delay",
+      "destination_type": "queue",
+      "arguments": {}
+    },
+    {
+      "vhost": "sandbox",
+      "source": "sandbox.exchangerate",
+      "routing_key": "exchangerates.onDemand",
+      "destination": "sandbox.onDemandExchangesRates",
+      "destination_type": "queue",
+      "arguments": {}
+    },
+    {
+      "vhost": "sandbox",
+      "source": "sandbox.exchangerate",
+      "routing_key": "exchangerates.scheduled",
+      "destination": "sandbox.scheduledExchangesRates",
+      "destination_type": "queue",
+      "arguments": {}
+    }
+  ]
+}

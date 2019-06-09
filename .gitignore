@@ -1,0 +1,42 @@
+### maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### gradde ###
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### general swap/backup files ###
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock

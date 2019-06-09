@@ -1,0 +1,82 @@
+spring:
+  application:
+    name: sandbox
+  jmx:
+    default-domain: ${spring.application.name}
+  rabbitmq:
+    virtual-host: sandbox
+    host: somerabbitmq
+    port: 5672
+    username: sandbox
+    password: sandbox
+    listener:
+      simple:
+        default-requeue-rejected: false
+        prefetch: 50
+      direct:
+        default-requeue-rejected: false
+        prefetch: 50
+  cache:
+    type: redis
+    redis:
+      time-to-live: 5m
+  redis:
+    host: someredis
+    password: 1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA==
+
+
+sandbox:
+  oauth:
+    jwt:
+      verifierKey: classpath:key/sandboxJwtPublicKey.pub
+  github:
+    endpoint: https://api.github.com/
+    connectionTimeout: PT60S
+    readTimeout: PT60S
+  exchangesrates:
+    onDemand:
+      consumeFrom: sandbox.getOnDemandExchangesRates
+      publish:
+        exchange: sandbox.exchangerate
+        routingKey: exchangerates.onDemand
+    delay:
+      exchange: sandbox.exchangerate
+      routingKey: exchangerates.delay
+    scheduled:
+      consumeFrom: sandbox.getExchangesRates
+      publish:
+        exchange: sandbox.exchangerate
+        routingKey: exchangerates.scheduled
+    api:
+      endpoint: http://apilayer.net/api
+      token: aVerySecretToken
+
+feign:
+  hystrix:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+
+---
+spring:
+  profiles: local-docker
+  rabbitmq:
+    host: localhost
+  redis:
+    host: localhost
+
+---
+spring:
+  profiles: production
+  cache:
+    redis:
+      time-to-live: 5s
