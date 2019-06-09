@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.7.RELEASE"
 	kotlin("jvm") version "1.3.30"
 	kotlin("plugin.spring") version "1.3.30"
+	war
 }
 
 group = "org.vieuxchameau"
