@@ -6,10 +6,13 @@ Just to showcase/play around with spring boot, kotlin, java 12, docker, kubernet
 
 * Java 12
 * Docker to run the project locally
+* Optional : get a free access key for the [currencies exchange api](https://currencylayer.com/). The application will still run without it
 
 If you use IntelliJ and want to use the maven wrapper you need to install the plugin Maven Wrapper support prior to opening the project
 
 ### Compilation
+
+Choice to use either maven or gradle wrapper
 
 #### Maven
 
@@ -63,7 +66,7 @@ cd docker
 docker-compose up
 ```
 
-If you are using Windows you may have to run the Docker Desktop and powershell as administrator, so the process
+If you are using Windows you may have to run the Docker Desktop and powershell as administrator, so the processes
 can create the ports they need.
 
 ####  Running the war
@@ -102,6 +105,8 @@ Spring actuator is activated and some endpoints are available
 * [Api Documentation (Swagger)](http://localhost:8080/swagger-ui.html)
 
 ### Creating Key pair
+
+A key is used to sign the JWT Token, in case you want to create a new key, the following commands can be used.
 
 To create a new key pair in a keystore
 ```shell
