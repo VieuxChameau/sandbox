@@ -1,15 +1,28 @@
 version: '3'
 
 services:
+  sandbox-app:
+    build: ..
+    env_file:
+      - sandbox-app.env
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_REDIS_HOST=redis
+    depends_on:
+      - rabbitmq
+      - redis
+    ports:
+      - 8080:8080
+
   rabbitmq:
     build: ./rabbitmq
     ports:
       - 15672:15672
-      - 5672:5672
+#      - 5672:5672
 
 
   redis:
     image: "redis:5.0.5-alpine"
     command: redis-server --requirepass "1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA=="
-    ports:
-      - 6379:6379
+#    ports:
+#      - 6379:6379

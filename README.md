@@ -63,7 +63,7 @@ First you need to run the dependencies : rabbitmq, redis
 
 ```shell
 cd docker
-docker-compose up
+docker-compose up -d redis rabbitmq
 ```
 
 If you are using Windows you may have to run the Docker Desktop and powershell as administrator, so the processes
