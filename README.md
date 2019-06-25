@@ -2,6 +2,26 @@
 
 Just to showcase/play around with spring boot, kotlin, java 12, docker, kubernetes
 
+## Table of contents
+- [Prerequisites](#Prerequisites)
+- [Compilation](#Compilation)
+    - [Maven](#Maven)
+        - [To build a fat jar](#To-build-a-fat-jar)
+        - [To build a war](#To-build-a-war)
+        - [To add extra info to the build info in jenkins](#To-add-extra-info-to-the-build-info-in-jenkins)
+    - [Gradle](#Gradle)
+        - [To build a fat jar](#To-build-a-fat-jar)
+        - [To build a war](#To-build-a-war)
+        - [To add extra info to the build info in jenkins](#To-add-extra-info-to-the-build-info-in-jenkins)
+- [Running everything with docker-compose](#Running-everything-with-docker-compose)
+- [Running the app outside docker](#Running-the-app-outside-docker)
+    - [Running the war](#Running-the-war)
+    - [Running the fat jar](#Running-the-fat-jar)
+    - [Running with Spring Boot Maven plugin](#Running-with-Spring-Boot-Maven-plugin)
+    - [Running with Spring Boot Gradle plugin](#Running-with-Spring-Boot-Gradle-plugin)
+- [Endpoints](#Endpoints)
+- [Creating Key pair](#Creating-Key-pair)
+
 ### Prerequisites
 
 * Java 12
@@ -37,7 +57,8 @@ Two profiles are available :
 ```shell
 ./mvnw clean package -Pwar -Djenkins.buildTag=${BUILD_TAG}
 ```
-This work with both profile
+This work with both profile.
+*BUILD_TAG is one of the environment variables set by jenkins for each build*
 
 #### Gradle
 
@@ -49,27 +70,47 @@ This work with both profile
 ##### To build a war
 
 ```shell
-./gradlew bootWar 
+./gradlew bootWar
 ```
 
 ##### To add extra info to the build info in jenkins
 ```shell
-./gradlew build -DjenkinsBuildTag=$BUILD_TAG
+./gradlew build -DjenkinsBuildTag=${BUILD_TAG}
 ```
 
-### Running locally
+*BUILD_TAG is one of the environment variables set by jenkins for each build*
+
+### Running everything with docker-compose
+
+You can build and run the app and its dependencies with docker-compose
+
+```shell
+cd docker
+docker-compose -f docker-compose.yml up --build -d
+```
+
+If you want to debug the application run
+
+```shell
+cd docker
+docker-compose -f docker-compose.yml -f docker-compose-debug.yml up --build -d
+```
+
+Then attach the debugger to the remote JVM on port 8000
+
+*If you are using Windows you may have to run the Docker Desktop and powershell as administrator, so the processes
+can create the ports they need.*
+
+### Running the app outside docker
 
 First you need to run the dependencies : rabbitmq, redis 
 
 ```shell
 cd docker
-docker-compose up -d redis rabbitmq
+docker-compose -f docker-compose-local.yml up -d
 ```
 
-If you are using Windows you may have to run the Docker Desktop and powershell as administrator, so the processes
-can create the ports they need.
-
-####  Running the war
+#### Running the war
 
 If you have selected the profile war during the build using either maven or gradle, you need to deploy the war to tomcat.
 
