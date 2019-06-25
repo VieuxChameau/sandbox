@@ -2,6 +2,7 @@ version: '3'
 
 services:
   sandbox-app:
-    command: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
     ports:
       - 8000:8000
