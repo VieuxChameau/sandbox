@@ -13,13 +13,13 @@
             <PatternLayout pattern="%d %-5p [%t] %logger{36} - %m%n"/>
         </Console>
 
-        <RollingFile name="LOG-XML-ROLLING-FILE" filename="${log-directory}/trace.log"
+        <!--<RollingFile name="LOG-XML-ROLLING-FILE" filename="${log-directory}/trace.log"
                      filepattern="${log-directory}/trace.%d{yyyy-MM-dd}.log.gz">
             <PatternLayout pattern="%d %-5p [%t] %logger{36} - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
-        </RollingFile>
+        </RollingFile>-->
     </Appenders>
 
     <Loggers>
