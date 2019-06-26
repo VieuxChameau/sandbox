@@ -9,6 +9,11 @@ services:
 
   redis:
     image: "redis:5.0.5-alpine"
-    command: redis-server --requirepass "1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA=="
+    command: redis-server --requirepass "1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA==" --appendonly yes
     ports:
       - 6379:6379
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:

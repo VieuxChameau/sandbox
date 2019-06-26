@@ -13,6 +13,8 @@ services:
       - redis
     ports:
       - 8080:8080
+    volumes:
+      - maven_repo:/root/.m2
 
   rabbitmq:
     build: ./rabbitmq
@@ -21,4 +23,10 @@ services:
 
   redis:
     image: "redis:5.0.5-alpine"
-    command: redis-server --requirepass "1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA=="
+    command: redis-server --requirepass "1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA==" --appendonly yes
+    volumes:
+      - redis_data:/data
+
+volumes:
+  maven_repo:
+  redis_data:
