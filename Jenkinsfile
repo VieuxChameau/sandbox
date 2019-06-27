@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'adoptopenjdk/openjdk12'
-            args '-v $HOME/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
     stages {
