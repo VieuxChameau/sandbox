@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'adoptopenjdk/openjdk12'
-            args '-v /root/.m2:/root/.m2'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
     stages {
@@ -15,6 +15,16 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
+        }
+    }
+    stage('Static Analysis') {
+        when {
+            expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS'
+            }
+        }
+        steps {
+            sh 'echo TODO' // TODO sonarqube
         }
     }
     stage('Deploy') {
