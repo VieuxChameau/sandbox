@@ -16,25 +16,25 @@ pipeline {
                 }
             }
         }
-    }
-    stage('Static Analysis') {
-        when {
-            expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS'
+        stage('Static Analysis') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
+            }
+            steps {
+                sh 'echo TODO' // TODO sonarqube
             }
         }
-        steps {
-            sh 'echo TODO' // TODO sonarqube
-        }
-    }
-    stage('Deploy') {
-        when {
-            expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS'
+        stage('Deploy') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
             }
-        }
-        steps {
-            sh 'echo TODO'
+            steps {
+                sh 'echo TODO'
+            }
         }
     }
 
