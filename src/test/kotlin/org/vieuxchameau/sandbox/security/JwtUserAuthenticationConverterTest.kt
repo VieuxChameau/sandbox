@@ -1,7 +1,7 @@
 package org.vieuxchameau.sandbox.security
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 class JwtUserAuthenticationConverterTest {

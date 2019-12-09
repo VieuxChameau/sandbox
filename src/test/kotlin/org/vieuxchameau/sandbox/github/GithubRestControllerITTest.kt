@@ -1,17 +1,15 @@
 package org.vieuxchameau.sandbox.github
 
+//import org.springframework.core.io.ClassPathResource
 import org.hamcrest.Matchers.`is`
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-//import org.springframework.core.io.ClassPathResource
 import org.springframework.http.MediaType
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.TestPropertySource
-import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.test.web.client.match.MockRestRequestMatchers
 import org.springframework.test.web.client.response.MockRestResponseCreators
@@ -32,7 +30,6 @@ import org.springframework.web.client.support.RestGatewaySupport
 )
 @AutoConfigureMockMvc
 @SpringBootTest
-@RunWith(SpringRunner::class)
 class GithubRestControllerITTest {
 
     @Autowired
@@ -44,7 +41,7 @@ class GithubRestControllerITTest {
     private lateinit var mockServer: MockRestServiceServer
 
 
-    @Before
+    @BeforeEach
     fun setUp() {
         val gateway = RestGatewaySupport()
         gateway.restTemplate = restTemplate

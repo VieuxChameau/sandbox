@@ -19,6 +19,7 @@ const val KEY_PASSWORD = "SandboxSecurityFirst"
 const val ACCESS_TOKEN_VALIDITY_IN_SECONDS: Long = 60 * 5 // 5 minutes
 
 class JWTTokenGenerator {
+    @JvmOverloads
     fun getJwtToken(userName: String = "VieuxChameau", roles: List<String> = listOf("ROLE_SUPERADMIN")): String {
         val signingKey = getJwtSigningKey()
         return Jwts.builder()

@@ -1,9 +1,9 @@
 package org.vieuxchameau.sandbox.security
 
 import io.jsonwebtoken.Jwts
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
-import org.junit.Test
 
 class JWTTokenGeneratorTest {
     @Test

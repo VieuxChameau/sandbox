@@ -3,9 +3,7 @@ package org.vieuxchameau.sandbox.exchangesrates
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.springframework.amqp.rabbit.core.RabbitTemplate
+import org.junit.jupiter.api.Test
 import org.springframework.amqp.rabbit.test.RabbitListenerTest
 import org.springframework.amqp.rabbit.test.TestRabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
-import org.springframework.test.context.junit4.SpringRunner
 import org.vieuxchameau.sandbox.configuration.RabbitTestConfig
 
 const val SCHEDULED_QUEUE_NAME = "scheduledRates"
@@ -30,7 +27,6 @@ const val ONDEMAND_QUEUE_NAME = "ondemandRates"
 )
 @RabbitListenerTest
 @SpringBootTest
-@RunWith(SpringRunner::class)
 class ExchangesRatesConsumerITTest {
     @Autowired
     lateinit var template: TestRabbitTemplate

@@ -1,8 +1,8 @@
 package org.vieuxchameau.sandbox.exchangesrates
 
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class ExchangesRatesConsumerTest {
     private val mockedExchangesRatesService = mock<ExchangesRatesService>()
@@ -10,7 +10,7 @@ class ExchangesRatesConsumerTest {
 
     private lateinit var exchangesRatesConsumer: ExchangesRatesConsumer
 
-    @Before
+    @BeforeEach
     fun setUp() {
         exchangesRatesConsumer = ExchangesRatesConsumer(
             mockedExchangesRatesService, mockedExchangesRatesPublisher

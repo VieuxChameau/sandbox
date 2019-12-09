@@ -3,15 +3,15 @@ package org.vieuxchameau.sandbox.exchangesrates
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.amqp.core.AmqpTemplate
 
 class ExchangesRatesPublisherTest {
     private val mockedAmqpTemplate = mock<AmqpTemplate>()
     private lateinit var exchangesRatesPublisher: ExchangesRatesPublisher
 
-    @Before
+    @BeforeEach
     fun setUp() {
         exchangesRatesPublisher = ExchangesRatesPublisher(
             mockedAmqpTemplate,

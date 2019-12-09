@@ -24,7 +24,6 @@ class ExchangesRatesRestController(
         @RequestParam("currencies") currencies: List<String>
     ): ExchangesRatesResponse {
         logger.debug("Getting exchanges rates from {} to {}", baseCurrency, currencies)
-
         return exchangesRatesService.getLiveRates(baseCurrency, currencies)
     }
 

@@ -1,8 +1,8 @@
 package org.vieuxchameau.sandbox.github
 
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.web.client.RestTemplate
 
 class GithubRestClientTest {
@@ -10,7 +10,7 @@ class GithubRestClientTest {
 
     private lateinit var githubRestClient: GithubRestClient
 
-    @Before
+    @BeforeEach
     fun setUp() {
         githubRestClient = GithubRestClient(mockedRestTemplate)
     }

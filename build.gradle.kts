@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.1.5.RELEASE"
-	id("io.spring.dependency-management") version "1.0.7.RELEASE"
-	kotlin("jvm") version "1.3.30"
-	kotlin("plugin.spring") version "1.3.30"
+	id("org.springframework.boot") version "2.2.1.RELEASE"
+	id("io.spring.dependency-management") version "1.0.8.RELEASE"
+	kotlin("jvm") version "1.3.61"
+	kotlin("plugin.spring") version "1.3.61"
 	war
 }
 
@@ -17,7 +17,7 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "Greenwich.SR1"
+extra["springCloudVersion"] = "Hoxton.RELEASE"
 
 configurations {
 	all {
@@ -35,14 +35,14 @@ dependencies {
 	implementation("org.springframework.security.oauth:spring-security-oauth2:2.3.6.RELEASE")
 	implementation("org.springframework.security:spring-security-jwt:1.0.10.RELEASE")
 	implementation("org.springframework.data:spring-data-redis")
-	implementation("redis.clients:jedis:2.9.3")
+	implementation("redis.clients:jedis:3.1.0")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	implementation("org.springframework.boot:spring-boot-starter-log4j2")
 	implementation("com.lmax:disruptor:3.4.2")
 	implementation("org.springframework:spring-oxm")
 //	Jaxb is no longer in the JDK since version 11
-	implementation("javax.xml.bind:jaxb-api:2.3.1")
-	implementation("org.glassfish.jaxb:jaxb-runtime:2.3.2")
+	implementation("javax.xml.bind:jaxb-api")
+	implementation("org.glassfish.jaxb:jaxb-runtime")
 	implementation("org.glassfish.jaxb:jaxb-core:2.3.0.1")
 	implementation("io.springfox:springfox-swagger2:$swaggerVersion")
 	implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
@@ -51,8 +51,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-	testImplementation("org.springframework.amqp", "spring-rabbit-test", "2.1.4.RELEASE")
-	testImplementation("com.nhaarman.mockitokotlin2", "mockito-kotlin", "2.1.0")
+	testImplementation("org.springframework.amqp", "spring-rabbit-test")
+	testImplementation("com.nhaarman.mockitokotlin2", "mockito-kotlin", "2.2.0")
 	testImplementation("io.jsonwebtoken", "jjwt", "0.9.1")
 }
 

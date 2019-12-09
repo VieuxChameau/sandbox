@@ -4,8 +4,8 @@ import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 private const val API_TOKEN = "VERY_SECRET_TOKEN"
 
@@ -13,7 +13,7 @@ class ExchangesRatesServiceTest {
     private val mockedExchangesRatesRestClient = mock<ExchangesRatesRestClient>()
     private lateinit var exchangesRatesService: ExchangesRatesService
 
-    @Before
+    @BeforeEach
     fun setUp() {
         exchangesRatesService = ExchangesRatesService(mockedExchangesRatesRestClient, API_TOKEN)
     }

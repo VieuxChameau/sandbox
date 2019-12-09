@@ -4,15 +4,15 @@ import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 class GithubRestControllerTest {
     private val mockedGithubRestClient = mock<GithubRestClient>()
 
     private lateinit var githubRestController: GithubRestController
 
-    @Before
+    @BeforeEach
     fun setUp() {
         githubRestController = GithubRestController(mockedGithubRestClient)
     }
