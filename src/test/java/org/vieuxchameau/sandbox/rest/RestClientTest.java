@@ -18,7 +18,12 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
 import static java.util.concurrent.CompletableFuture.allOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Simple test class to demo new jdk http client and
+ * Java 13 text block (need to amend the pom for using them)
+ */
 public class RestClientTest {
+    private static final String SANDBOX_ENDPOINT = "http://localhost:8080";
     private final ObjectMapper objectMapper = new JsonMapper();
     private final HttpClient httpClient = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(2))
@@ -29,7 +34,7 @@ public class RestClientTest {
         final var username = "VieuxChameau";
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/github/users/" + username))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/github/users/" + username))
                 .build();
 
         return httpClient.sendAsync(request, ofString())
@@ -43,7 +48,7 @@ public class RestClientTest {
     private CompletableFuture<Void> shouldSayHelloWorld() {
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/hello"))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/hello"))
                 .build();
 
         return httpClient.sendAsync(request, ofString())
@@ -54,7 +59,7 @@ public class RestClientTest {
         final var username = "VieuxChameau";
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/hello/" + username))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/hello/" + username))
                 .build();
 
         return httpClient.sendAsync(request, ofString())
@@ -74,7 +79,7 @@ public class RestClientTest {
         final var body = "";
         final var request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(body))
-                .uri(URI.create("http://localhost:8080/hellobabel"))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/hellobabel"))
                 .header("Content-Type", "application/json")
                 .build();
 
@@ -87,7 +92,7 @@ public class RestClientTest {
         final var username = "VieuxChameau";
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/hellosecured/" + username))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/hellosecured/" + username))
                 .build();
 
         return httpClient.sendAsync(request, ofString())
@@ -102,7 +107,7 @@ public class RestClientTest {
         final var jwtTokenGenerator = new JWTTokenGenerator();
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/hellosecured/" + username))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/hellosecured/" + username))
                 .header("Authorization", "Bearer " + jwtTokenGenerator.getJwtToken())
                 .build();
         return httpClient.sendAsync(request, ofString())
@@ -112,7 +117,7 @@ public class RestClientTest {
     private CompletableFuture<Void> shouldGetDefaultExchangeRates() {
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/exchangesrates"))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/exchangesrates"))
                 .build();
 
         return httpClient.sendAsync(request, ofString())
@@ -122,7 +127,7 @@ public class RestClientTest {
     private CompletableFuture<Void> shouldGetDefaultExchangeRatesFromEUR() {
         final var request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/exchangesrates/EUR?currencies=USD"))
+                .uri(URI.create(SANDBOX_ENDPOINT + "/exchangesrates/EUR?currencies=USD"))
                 .build();
 
         return httpClient.sendAsync(request, ofString())
