@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -76,7 +77,10 @@ public class RestClientTest {
                             "language" : "it"
                         }
                         """*/
-        final var body = "";
+        final var body = "{\n" +
+                "  \"name\" : \"VieuxChameau\",\n" +
+                "  \"language\" : \"it\"\n" +
+                "}";
         final var request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .uri(URI.create(SANDBOX_ENDPOINT + "/hellobabel"))
@@ -135,13 +139,14 @@ public class RestClientTest {
     }
 
     public static void main(String[] args) {
+        System.out.println("Starting RestClientTest " + LocalDateTime.now());
         final var restClientTest = new RestClientTest();
         List<CompletableFuture<Void>> cfs = new ArrayList<>();
         cfs.add(restClientTest.shouldGetGithubUser());
 
         cfs.add(restClientTest.shouldSayHelloWorld());
         cfs.add(restClientTest.shouldSayHelloVieuxChameau());
-//        cfs.add(restClientTest.shouldSayHelloVieuxChameauInItalian());
+        cfs.add(restClientTest.shouldSayHelloVieuxChameauInItalian());
 
         cfs.add(restClientTest.shouldGet403WithoutToken());
         cfs.add(restClientTest.shouldSecurelySayHelloVieuxChameau());
@@ -151,6 +156,8 @@ public class RestClientTest {
 
         allOf(cfs.toArray(new CompletableFuture[0]))
                 .join();
+
+        System.out.println("RestClientTest done " + LocalDateTime.now());
     }
 
     private <R> R asJson(final String json, Class<R> returnType) {

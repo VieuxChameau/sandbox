@@ -24,11 +24,28 @@ spring:
     host: someredis
     password: 1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA==
 
+# See issue https://github.com/spring-projects/spring-security-oauth2-boot/issues/200, documentation does not match source code
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: |
+                  -----BEGIN PUBLIC KEY-----
+                  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvEGzdXtY/TQQAoBVoN7d
+                  663ijEemw0SGH/uBWDPyJRvFHqSrgQhxjtN6LPvIP6ah+arRsuURDAv0jt6iq3Zn
+                  Y3965LfIuA78TvUUfksKcG6wAjYfn1O/qEtu7AlBiNVrUyV4BXpNEqFlqtCVRVzM
+                  soZJYz55M+qx8JFknKPAN8JJCnX+PBW5OkCyhPmWySBRG93pJL44qSVvbEBVA34J
+                  4c+z3FT4paQgSSN9zzitfLKH4hpytODxEZit4w/om2H6As2QIFOJKdT9gJeikPyC
+                  uSWzs7btGa2iZFoNovj6oBJz91gPdymXtjmJv21aZB0Ic+wFQOZ7DO3j3S9JZVs+
+                  WwIDAQAB
+                  -----END PUBLIC KEY-----
+#          only http uri supported
+#        key-uri: file://~/sandbox/src/main/resources/key/sandboxJwtPublicKyey.pub
 
 sandbox:
-  oauth:
-    jwt:
-      verifierKey: classpath:key/sandboxJwtPublicKey.pub
+#  oauth:
+#    jwt:
+#      verifierKey: classpath:key/sandboxJwtPublicKey.pub
   github:
     endpoint: https://api.github.com/
     connectionTimeout: PT60S

@@ -30,9 +30,6 @@
         <spring-boot.version>2.2.1.RELEASE</spring-boot.version> <!--Keep in sync with parent pom version-->
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
 
-        <spring-security-oauth2.version>2.4.0.RELEASE</spring-security-oauth2.version>
-        <spring-security-jwt.version>1.1.0.RELEASE</spring-security-jwt.version>
-
         <glassfish-jaxb.version>2.3.2</glassfish-jaxb.version>
 
         <swagger.version>2.9.2</swagger.version>
@@ -96,15 +93,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${spring-security-oauth2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-jwt</artifactId>
-            <version>${spring-security-jwt.version}</version>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
         </dependency>
 
         <dependency>
