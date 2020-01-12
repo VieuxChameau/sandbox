@@ -30,14 +30,10 @@ import org.springframework.web.client.support.RestGatewaySupport
 )
 @AutoConfigureMockMvc
 @SpringBootTest
-class GithubRestControllerITTest {
-
-    @Autowired
-    lateinit var mvc: MockMvc
-
-    @Autowired
-    lateinit var restTemplate: RestTemplate
-
+class GithubRestControllerITTest(
+    @Autowired val mvc: MockMvc,
+    @Autowired val restTemplate: RestTemplate
+) {
     private lateinit var mockServer: MockRestServiceServer
 
 

@@ -30,11 +30,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 @AutoConfigureMockMvc
 @AutoConfigureWireMock(port = 0)
 @SpringBootTest
-class GithubRestControllerWiremockITTest {
-
-    @Autowired
-    lateinit var mvc: MockMvc
-
+class GithubRestControllerWiremockITTest(
+    @Autowired val mvc: MockMvc
+) {
     @BeforeEach
     fun setUp() {
         WireMock.reset()

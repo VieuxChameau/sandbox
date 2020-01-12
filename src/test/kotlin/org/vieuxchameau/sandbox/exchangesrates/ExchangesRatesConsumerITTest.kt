@@ -27,9 +27,9 @@ const val ONDEMAND_QUEUE_NAME = "ondemandRates"
 )
 @RabbitListenerTest
 @SpringBootTest
-class ExchangesRatesConsumerITTest {
-    @Autowired
-    lateinit var template: TestRabbitTemplate
+class ExchangesRatesConsumerITTest(
+    @Autowired val template: TestRabbitTemplate
+) {
 
     @MockBean
     lateinit var exchangesRatesPublisher: ExchangesRatesPublisher

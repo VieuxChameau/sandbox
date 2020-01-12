@@ -22,11 +22,9 @@ import org.vieuxchameau.sandbox.security.JWTTokenGenerator
 )
 @AutoConfigureMockMvc
 @SpringBootTest
-class SecuredGreetingsRestControllerITTest {
-
-    @Autowired
-    lateinit var mvc: MockMvc
-
+class SecuredGreetingsRestControllerITTest(
+    @Autowired val mvc: MockMvc
+) {
     private val jwtTokenGenerator = JWTTokenGenerator()
 
     @Test
