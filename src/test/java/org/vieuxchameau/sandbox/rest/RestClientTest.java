@@ -70,17 +70,12 @@ public class RestClientTest {
     }
 
     private CompletableFuture<Void> shouldSayHelloVieuxChameauInItalian() {
-        // to test java 13 text block
-        /*""
-                        {
-                            "name" : "VieuxChameau",
-                            "language" : "it"
-                        }
-                        """*/
-        final var body = "{\n" +
-                "  \"name\" : \"VieuxChameau\",\n" +
-                "  \"language\" : \"it\"\n" +
-                "}";
+        final var body = """
+                {
+                    "name" : "VieuxChameau",
+                    "language" : "it"
+                }
+                """;
         final var request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .uri(URI.create(SANDBOX_ENDPOINT + "/hellobabel"))
