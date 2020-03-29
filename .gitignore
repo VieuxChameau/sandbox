@@ -40,3 +40,7 @@ nbdist/
 *.swp
 *.DS_Store
 *.lock
+
+
+# Jenkins File Groovy DSL
+pipeline.gdsl
