@@ -1,6 +1,6 @@
 # Sandbox
 
-Just to showcase/play around with spring boot, kotlin, java 12, docker, kubernetes
+Just to showcase/play around with spring boot, kotlin, java 13, docker, kubernetes
 
 ## Table of contents
 - [Prerequisites](#Prerequisites)
@@ -24,7 +24,7 @@ Just to showcase/play around with spring boot, kotlin, java 12, docker, kubernet
 
 ### Prerequisites
 
-* Java 12
+* Java 13
 * Docker to run the project locally
 * Optional : get a free access key for the [currencies exchange api](https://currencylayer.com/). The application will still run without it
 
@@ -119,7 +119,7 @@ If you have selected the profile war during the build using either maven or grad
 If you have build a fat jar by using either maven or gradle
 
 ```shell
-java -jar sandbox-0.0.1-SNAPSHOT.jar --spring.profiles.active=local-docker --sandbox.exchangesrates.api.token=theRealToken
+java --enable-preview -jar sandbox-0.0.1-SNAPSHOT.jar --spring.profiles.active=local-docker --sandbox.exchangesrates.api.token=theRealToken
 ```
 
 #### Running with Spring Boot Maven plugin

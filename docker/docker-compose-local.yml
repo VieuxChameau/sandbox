@@ -8,7 +8,7 @@ services:
       - 5672:5672
 
   redis:
-    image: "redis:5.0.5-alpine"
+    image: "redis:5.0.8-alpine"
     command: redis-server --requirepass "1VBnoRGtFG1GuE9/xd7hCfav4CJ40+ZCHA==" --appendonly yes
     ports:
       - 6379:6379
