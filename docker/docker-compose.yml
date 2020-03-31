@@ -8,6 +8,7 @@ services:
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_REDIS_HOST=redis
+      - JAVA_OPTS=--enable-preview
     depends_on:
       - rabbitmq
       - redis
