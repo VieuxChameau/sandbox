@@ -10,8 +10,8 @@ plugins {
 
 group = "org.vieuxchameau"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_12
-java.targetCompatibility = JavaVersion.VERSION_12
+java.sourceCompatibility = JavaVersion.VERSION_14
+java.targetCompatibility = JavaVersion.VERSION_14
 
 repositories {
 	mavenCentral()
@@ -49,6 +49,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.springframework.amqp", "spring-rabbit-test")
+	testImplementation("org.springframework.cloud", "spring-cloud-contract-wiremock")
+	testImplementation("com.github.tomakehurst", "wiremock-jre8-standalone")
 	testImplementation("com.nhaarman.mockitokotlin2", "mockito-kotlin", "2.2.0")
 	testImplementation("io.jsonwebtoken", "jjwt", "0.9.1")
 }
@@ -69,6 +71,15 @@ springBoot {
 			)
 		}
 	}
+}
+
+tasks.withType<JavaCompile> {
+	options.compilerArgs.add("--enable-preview")
+}
+
+tasks.test {
+	useJUnitPlatform()
+	jvmArgs("--enable-preview")
 }
 
 tasks.withType<KotlinCompile> {
